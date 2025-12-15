@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="">
+    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Added rule-based PC diagnostic engine and CLI flow">
+      <change afterPath="$PROJECT_DIR$/app/data/check_db.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/rules/engine.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/rules/engine.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/rules/knowledge_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/rules/knowledge_base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/db.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +25,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;sleepyhugo&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sleepyhugo/pc-builder-troubleshooter.git&quot;,
+    &quot;accountId&quot;: &quot;56638e0b-3808-4120-b728-55bef68eea30&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="36oDiW6uLNEoez4Oe4oJJBRH0Lw" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -36,13 +48,59 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.__init__.executor": "Run",
+    "Python.check_db.executor": "Run",
     "Python.cli.executor": "Run",
     "Python.main.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.cli">
+  <component name="RunManager" selected="Python.check_db">
+    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pc-builder-troubleshooter" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/data/__init__.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="check_db" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pc-builder-troubleshooter" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app/data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/data/check_db.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="cli" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pc-builder-troubleshooter" />
       <option name="ENV_FILES" value="" />
@@ -88,12 +146,16 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.check_db" />
+      <item itemvalue="Python.__init__" />
       <item itemvalue="Python.cli" />
       <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.check_db" />
         <item itemvalue="Python.cli" />
+        <item itemvalue="Python.__init__" />
         <item itemvalue="Python.main" />
       </list>
     </recent_temporary>
@@ -114,6 +176,19 @@
       <option name="presentableId" value="Default" />
       <updated>1765664158145</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added rule-based PC diagnostic engine and CLI flow">
+      <option name="closed" value="true" />
+      <created>1765672678587</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1765672678587</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added rule-based PC diagnostic engine and CLI flow" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added rule-based PC diagnostic engine and CLI flow" />
   </component>
 </project>
