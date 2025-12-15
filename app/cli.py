@@ -1,6 +1,18 @@
-from rules.engine import DiagnosticEngine
-from rules.knowledge_base import DIAGNOSTIC_RULES
-from data.db import init_db, save_session, save_results
+from pathlib import Path
+
+from app.rules.engine import DiagnosticEngine
+from app.rules.knowledge_base import DIAGNOSTIC_RULES
+from app.data.db import init_db, save_session, save_results
+from app.data.queries import get_session, get_results_for_session
+from app.reports.pdf_report import generate_pdf_report
+
+
+def ask_yes_no(prompt: str) -> bool:
+    while True:
+        response = input(prompt).lower().strip()
+        if response in ("y", "n"):
+            return response == "y"
+        print("Please type 'y' or 'n'.")
 
 
 def run_cli():
@@ -14,12 +26,7 @@ def run_cli():
     print("\nAnswer the symptom questions:\n")
 
     for rule in DIAGNOSTIC_RULES:
-        while True:
-            response = input(f"{rule['question']} (y/n): ").lower().strip()
-            if response in ("y", "n"):
-                answers[rule["symptom"]] = (response == "y")
-                break
-            print("Please type 'y' or 'n'.")
+        answers[rule["symptom"]] = ask_yes_no(f"{rule['question']} (y/n): ")
 
     engine = DiagnosticEngine()
     results = engine.run(answers)
@@ -31,19 +38,26 @@ def run_cli():
 
     if not results:
         print(f"No matching issues detected. (Saved session #{session_id})")
-        return
+    else:
+        print(f"Saved session #{session_id}\n")
+        for result in results:
+            print(f"Symptom: {result['symptom'].replace('_', ' ').title()}")
+            print("Probable Causes:")
+            for cause in result["probable_causes"]:
+                print(f" - {cause}")
+            print("Next Tests:")
+            for test in result["next_tests"]:
+                print(f" - {test}")
+            print()
 
-    print(f"Saved session #{session_id}\n")
+    # PDF generation
+    if ask_yes_no("Generate a PDF report now? (y/n): "):
+        session = get_session(session_id)
+        results_for_pdf = get_results_for_session(session_id)
 
-    for result in results:
-        print(f"Symptom: {result['symptom'].replace('_', ' ').title()}")
-        print("Probable Causes:")
-        for cause in result["probable_causes"]:
-            print(f" - {cause}")
-        print("Next Tests:")
-        for test in result["next_tests"]:
-            print(f" - {test}")
-        print()
+        output_dir = Path("reports_out")
+        pdf_path = generate_pdf_report(session, results_for_pdf, output_dir)
+        print(f"\n✅ PDF generated: {pdf_path.resolve()}\n")
 
 
 if __name__ == "__main__":
