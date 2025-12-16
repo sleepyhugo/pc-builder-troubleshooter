@@ -45,3 +45,23 @@ def get_results_for_session(session_id: int) -> list[dict]:
                 }
             )
         return results
+
+
+def list_recent_sessions(limit: int = 10) -> list[dict]:
+    with get_connection() as conn:
+        cur = conn.cursor()
+        cur.execute(
+            """
+            SELECT id, created_at, user_notes
+            FROM sessions
+            ORDER BY id DESC
+            LIMIT ?
+            """,
+            (limit,),
+        )
+        rows = cur.fetchall()
+
+        return [
+            {"id": row[0], "created_at": row[1], "user_notes": row[2] or ""}
+            for row in rows
+        ]

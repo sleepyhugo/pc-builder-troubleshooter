@@ -3,7 +3,11 @@ from pathlib import Path
 from app.rules.engine import DiagnosticEngine
 from app.rules.knowledge_base import DIAGNOSTIC_RULES
 from app.data.db import init_db, save_session, save_results
-from app.data.queries import get_session, get_results_for_session
+from app.data.queries import (
+    get_session,
+    get_results_for_session,
+    list_recent_sessions,
+)
 from app.reports.pdf_report import generate_pdf_report
 
 
@@ -15,16 +19,20 @@ def ask_yes_no(prompt: str) -> bool:
         print("Please type 'y' or 'n'.")
 
 
-def run_cli():
-    print("\n=== PC Builder Troubleshooter ===\n")
+def ask_int(prompt: str) -> int | None:
+    raw = input(prompt).strip()
+    if not raw.isdigit():
+        return None
+    return int(raw)
 
-    init_db()
+
+def run_new_diagnostic() -> int:
+    print("\n=== New Diagnostic Session ===\n")
 
     user_notes = input("Optional: add a short note (build specs / what happened): ").strip()
     answers = {}
 
     print("\nAnswer the symptom questions:\n")
-
     for rule in DIAGNOSTIC_RULES:
         answers[rule["symptom"]] = ask_yes_no(f"{rule['question']} (y/n): ")
 
@@ -50,15 +58,68 @@ def run_cli():
                 print(f" - {test}")
             print()
 
-    # PDF generation
     if ask_yes_no("Generate a PDF report now? (y/n): "):
-        session = get_session(session_id)
-        results_for_pdf = get_results_for_session(session_id)
+        generate_pdf_for_session(session_id)
 
-        output_dir = Path("reports_out")
-        pdf_path = generate_pdf_report(session, results_for_pdf, output_dir)
-        print(f"\n✅ PDF generated: {pdf_path.resolve()}\n")
+    return session_id
+
+
+def show_recent_sessions():
+    sessions = list_recent_sessions(limit=10)
+
+    print("\n=== Recent Sessions (last 10) ===\n")
+    if not sessions:
+        print("No sessions found yet.\n")
+        return
+
+    for s in sessions:
+        note_preview = (s["user_notes"][:50] + "...") if len(s["user_notes"]) > 50 else s["user_notes"]
+        note_preview = note_preview if note_preview else "(no notes)"
+        print(f"#{s['id']} | {s['created_at']} | {note_preview}")
+    print()
+
+
+def generate_pdf_for_session(session_id: int):
+    session = get_session(session_id)
+    if not session:
+        print(f"\nNo session found with id {session_id}\n")
+        return
+
+    results = get_results_for_session(session_id)
+    output_dir = Path("reports_out")
+    pdf_path = generate_pdf_report(session, results, output_dir)
+
+    print(f"\nPDF generated: {pdf_path.resolve()}\n")
+
+
+def menu_loop():
+    init_db()
+
+    while True:
+        print("=== PC Builder Troubleshooter ===")
+        print("1) New diagnostic")
+        print("2) List recent sessions")
+        print("3) Generate PDF for a session ID")
+        print("4) Quit")
+
+        choice = input("Choose an option: ").strip()
+
+        if choice == "1":
+            run_new_diagnostic()
+        elif choice == "2":
+            show_recent_sessions()
+        elif choice == "3":
+            session_id = ask_int("Enter session ID: ")
+            if session_id is None:
+                print("\nPlease enter a valid numeric session ID.\n")
+            else:
+                generate_pdf_for_session(session_id)
+        elif choice == "4":
+            print("\nGoodbye!\n")
+            break
+        else:
+            print("\nInvalid option. Choose 1-4.\n")
 
 
 if __name__ == "__main__":
-    run_cli()
+    menu_loop()

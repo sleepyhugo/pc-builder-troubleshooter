@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Added log diagnostic sessions and results to sqliteA">
-      <change afterPath="$PROJECT_DIR$/app/data/queries.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/reports/generate_report.py" afterDir="false" />
+    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment=" Added feature to optionally generate PDF report after CLI diagnostic session">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/reports/pdf_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/reports/pdf_report.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/data/queries.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/queries.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,18 +45,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.__init__.executor": "Run",
-    "Python.check_db.executor": "Run",
-    "Python.cli.executor": "Run",
-    "Python.generate_report.executor": "Run",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
+    &quot;Python.check_db.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cli.executor&quot;: &quot;Run&quot;,
+    &quot;Python.generate_report.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Python.generate_report">
+}</component>
+  <component name="RunManager" selected="Python.cli">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pc-builder-troubleshooter" />
       <option name="ENV_FILES" value="" />
@@ -169,17 +168,17 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.check_db" />
-      <item itemvalue="Python.generate_report" />
       <item itemvalue="Python.__init__" />
+      <item itemvalue="Python.check_db" />
       <item itemvalue="Python.cli" />
+      <item itemvalue="Python.generate_report" />
       <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.cli" />
         <item itemvalue="Python.generate_report" />
         <item itemvalue="Python.check_db" />
-        <item itemvalue="Python.cli" />
         <item itemvalue="Python.__init__" />
         <item itemvalue="Python.main" />
       </list>
@@ -217,12 +216,30 @@
       <option name="project" value="LOCAL" />
       <updated>1765783200522</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=" Added feature to generate shareable PDF diagnostic report from saved sessions">
+      <option name="closed" value="true" />
+      <created>1765785397966</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1765785397966</updated>
+    </task>
+    <task id="LOCAL-00004" summary=" Added feature to optionally generate PDF report after CLI diagnostic session">
+      <option name="closed" value="true" />
+      <created>1765838036846</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1765838036846</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added rule-based PC diagnostic engine and CLI flow" />
     <MESSAGE value="Added log diagnostic sessions and results to sqliteA" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added log diagnostic sessions and results to sqliteA" />
+    <MESSAGE value=" Added feature to generate shareable PDF diagnostic report from saved sessions" />
+    <MESSAGE value=" Added feature to optionally generate PDF report after CLI diagnostic session" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Added feature to optionally generate PDF report after CLI diagnostic session" />
   </component>
 </project>
