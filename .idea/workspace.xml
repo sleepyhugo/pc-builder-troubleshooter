@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment=" Added feature to optionally generate PDF report after CLI diagnostic session">
+    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment=" Added feature to CLI menu to browse sessions and generate PDF reports">
+      <change afterPath="$PROJECT_DIR$/app/web/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/web/static/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/web/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/web/templates/results.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/web/web_app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/data/queries.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data/queries.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -45,17 +49,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.__init__.executor&quot;: &quot;Run&quot;,
-    &quot;Python.check_db.executor&quot;: &quot;Run&quot;,
-    &quot;Python.cli.executor&quot;: &quot;Run&quot;,
-    &quot;Python.generate_report.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.__init__.executor": "Run",
+    "Python.check_db.executor": "Run",
+    "Python.cli.executor": "Run",
+    "Python.generate_report.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Python.cli">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pc-builder-troubleshooter" />
@@ -232,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1765838036846</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary=" Added feature to CLI menu to browse sessions and generate PDF reports">
+      <option name="closed" value="true" />
+      <created>1765844926749</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1765844926749</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -240,6 +253,7 @@
     <MESSAGE value="Added log diagnostic sessions and results to sqliteA" />
     <MESSAGE value=" Added feature to generate shareable PDF diagnostic report from saved sessions" />
     <MESSAGE value=" Added feature to optionally generate PDF report after CLI diagnostic session" />
-    <option name="LAST_COMMIT_MESSAGE" value=" Added feature to optionally generate PDF report after CLI diagnostic session" />
+    <MESSAGE value=" Added feature to CLI menu to browse sessions and generate PDF reports" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Added feature to CLI menu to browse sessions and generate PDF reports" />
   </component>
 </project>

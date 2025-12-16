@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PC Builder Troubleshooter</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+  <div class="page">
+    <div class="container">
+
+      <h1>PC Builder Troubleshooter</h1>
+      <p class="muted">
+        Answer a few symptoms and get probable causes + next tests.
+        Sessions are saved for PDF reports.
+      </p>
+
+      <form method="POST" action="/diagnose-async">
+
+        <div class="card">
+          <label for="user_notes">Notes (optional)</label>
+          <p class="muted">
+            Example: CPU/GPU/RAM specs, what changed, when it fails.
+          </p>
+          <textarea
+            id="user_notes"
+            name="user_notes"
+            placeholder="e.g., i7 + 4070, re-seated RAM, now no display..."
+          ></textarea>
+        </div>
+
+        {% for r in rules %}
+          <div class="card">
+            <div class="question">
+              <strong>{{ r.question }}</strong>
+            </div>
+
+            <div class="choice-row">
+              <label class="pill">
+                <input type="radio" name="{{ r.symptom }}" value="y" required />
+                Yes
+              </label>
+
+              <label class="pill">
+                <input type="radio" name="{{ r.symptom }}" value="n" />
+                No
+              </label>
+            </div>
+          </div>
+        {% endfor %}
+
+        <div class="footer">
+          <button class="btn btn-primary" type="submit">
+            Run Diagnosis
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</body>
+</html>
