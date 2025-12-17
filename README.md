@@ -5,6 +5,12 @@ Users answer symptom-based questions and receive **probable causes**, **recommen
 
 Built to combine **hardware domain knowledge** with **clean software design**.
 
+## Why This Project
+
+Building and troubleshooting PCs often relies on informal advice and guesswork.
+This project formalizes common troubleshooting knowledge into a structured,
+repeatable diagnostic process that produces clear next steps and documentation.
+
 ## Features
 
 - **Rule-based diagnostic engine**  
