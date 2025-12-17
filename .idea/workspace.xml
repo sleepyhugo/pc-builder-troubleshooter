@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Added README Section">
+    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Added reason for project in README">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/web/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/web/static/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/web/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/web/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +258,23 @@
       <option name="project" value="LOCAL" />
       <updated>1765864371434</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Edited README">
+      <option name="closed" value="true" />
+      <created>1765955988065</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1765955988065</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added reason for project in README">
+      <option name="closed" value="true" />
+      <created>1765956981073</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1765956981073</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -267,6 +284,8 @@
     <MESSAGE value=" Added feature to optionally generate PDF report after CLI diagnostic session" />
     <MESSAGE value=" Added feature to CLI menu to browse sessions and generate PDF reports" />
     <MESSAGE value="Added FastAPI web UI with session results and PDF download" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added FastAPI web UI with session results and PDF download" />
+    <MESSAGE value="Edited README" />
+    <MESSAGE value="Added reason for project in README" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added reason for project in README" />
   </component>
 </project>

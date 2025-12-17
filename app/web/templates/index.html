@@ -9,55 +9,68 @@
 
 <body>
   <div class="page">
-    <div class="container">
+    <div class="shell">
+      <div class="shell-inner">
 
-      <h1>PC Builder Troubleshooter</h1>
-      <p class="muted">
-        Answer a few symptoms and get probable causes + next tests.
-        Sessions are saved for PDF reports.
-      </p>
+        <div class="hero">
+          <div>
+            <h1 class="hero-title">PC Builder Troubleshooter</h1>
+            <p class="hero-subtitle">
+              Fast, structured diagnostics for common build issues. Answer a few symptoms and get probable causes,
+              recommended next tests, and a shareable PDF report.
+            </p>
 
-      <form method="POST" action="/diagnose-async">
-
-        <div class="card">
-          <label for="user_notes">Notes (optional)</label>
-          <p class="muted">
-            Example: CPU/GPU/RAM specs, what changed, when it fails.
-          </p>
-          <textarea
-            id="user_notes"
-            name="user_notes"
-            placeholder="e.g., i7 + 4070, re-seated RAM, now no display..."
-          ></textarea>
-        </div>
-
-        {% for r in rules %}
-          <div class="card">
-            <div class="question">
-              <strong>{{ r.question }}</strong>
-            </div>
-
-            <div class="choice-row">
-              <label class="pill">
-                <input type="radio" name="{{ r.symptom }}" value="y" required />
-                Yes
-              </label>
-
-              <label class="pill">
-                <input type="radio" name="{{ r.symptom }}" value="n" />
-                No
-              </label>
+            <div class="kpi-row">
+              <span class="chip"><span class="dot"></span> Rule-based engine</span>
+              <span class="chip"><span class="dot"></span> Saved sessions</span>
+              <span class="chip"><span class="dot"></span> PDF export</span>
+              <span class="chip"><span class="dot"></span> Dark mode</span>
             </div>
           </div>
-        {% endfor %}
-
-        <div class="footer">
-          <button class="btn btn-primary" type="submit">
-            Run Diagnosis
-          </button>
         </div>
 
-      </form>
+        <p class="section-title">Notes</p>
+        <p class="section-help">Optional, but helps: specs (CPU/GPU/RAM), recent changes, and when it fails.</p>
+
+        <form method="POST" action="/diagnose-async">
+          <div class="card">
+            <label for="user_notes">Build / symptom notes (optional)</label>
+            <textarea
+              id="user_notes"
+              name="user_notes"
+              placeholder="Example: i7 + RTX 4070, added new RAM, powers on but no display..."
+            ></textarea>
+          </div>
+
+          <p class="section-title">Symptoms</p>
+          <p class="section-help">Answer based on what you observe right now.</p>
+
+          <div class="grid">
+            {% for r in rules %}
+              <div class="card">
+                <div class="question"><strong>{{ r.question }}</strong></div>
+
+                <div class="choice-row">
+                  <label class="pill">
+                    <input type="radio" name="{{ r.symptom }}" value="y" required />
+                    Yes
+                  </label>
+                  <label class="pill">
+                    <input type="radio" name="{{ r.symptom }}" value="n" />
+                    No
+                  </label>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+
+          <div class="footer">
+            <div class="muted">Saved to SQLite • PDF available on results page</div>
+            <button class="btn btn-primary" type="submit">Run Diagnosis</button>
+          </div>
+        </form>
+
+      </div>
     </div>
   </div>
 </body>
