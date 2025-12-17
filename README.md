@@ -25,7 +25,6 @@ Built to combine **hardware domain knowledge** with **clean software design**.
 - **Modern UI polish**  
   Always-on dark mode, centered layout, subtle hover animations.
 
-
 ## Tech Stack
 
 **Backend**
@@ -44,37 +43,47 @@ Built to combine **hardware domain knowledge** with **clean software design**.
 - Modular project structure
 - CLI + Web entry points
 
+## Getting Started
+
 ### Clone the repository
+```bash
+git clone https://github.com/sleepyhugo/pc-builder-troubleshooter.git
+cd pc-builder-troubleshooter
+```
 
-`git clone https://github.com/sleepyhugo/pc-builder-troubleshooter.git`  
-`cd pc-builder-troubleshooter`
+### Create a virtual environment
+```bash
+python -m venv .venv
+source .venv/bin/activate   # Windows: .venv\Scripts\activate
+```
 
-Create a virtual environment:  
-`python -m venv .venv`  
-`source .venv/bin/activate   # Windows: .venv\Scripts\activate`  
+### Install dependencies
+```bash
+pip install -r requirements.txt
+```
 
-Install dependencies:  
-`pip install -r requirements.txt`
+## Running the CLI
+```bash
+python -m app.cli
+```
 
-Running the CLI   
-`python -m app.cli` 
-
-- From the menu you can:  
-
+From the menu you can:
 - Run a new diagnostic
-
 - View recent sessions
-
 - Generate PDF reports for past sessions
 
-### Running the Web App
-`uvicorn app.web.web_app:app --reload`  
+
+## Running the Web App
+```bash
+uvicorn app.web.web_app:app --reload
+```
 
 Open in your browser:
+```
+http://127.0.0.1:8000
+```
 
-`http://127.0.0.1:8000`  
 Features:
-
 - Answer symptom questions
 - View diagnostic results
 - Download PDF report per session
