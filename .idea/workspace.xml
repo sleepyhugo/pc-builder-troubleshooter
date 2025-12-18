@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Feature: Added additional diagnostic rule for common hardware issue">
-      <change afterPath="$PROJECT_DIR$/app/rules/validator.py" afterDir="false" />
+    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Feature: Added basic validation for diagnostic rules">
+      <change afterPath="$PROJECT_DIR$/app/rules/summary.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/web/web_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/web/web_app.py" afterDir="false" />
     </list>
@@ -306,7 +306,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766026890959</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Feature: Added basic validation for diagnostic rules">
+      <option name="closed" value="true" />
+      <created>1766031200482</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1766031200482</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -322,6 +330,7 @@
     <MESSAGE value="UI: Added helpful diagnostic tip to landing page" />
     <MESSAGE value="UI: Edited Web UI to look nicer." />
     <MESSAGE value="Feature: Added additional diagnostic rule for common hardware issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="Feature: Added additional diagnostic rule for common hardware issue" />
+    <MESSAGE value="Feature: Added basic validation for diagnostic rules" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feature: Added basic validation for diagnostic rules" />
   </component>
 </project>

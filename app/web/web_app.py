@@ -10,6 +10,8 @@ from app.rules.validator import validate_rules
 from app.data.db import init_db, save_session, save_results
 from app.data.queries import get_session, get_results_for_session
 from app.reports.pdf_report import generate_pdf_report
+from app.rules.summary import summarize_results
+
 
 app = FastAPI(title="PC Builder Troubleshooter")
 
@@ -76,6 +78,7 @@ async def diagnose_async(
 
     engine = DiagnosticEngine()
     results = engine.run(answers)
+    summary = summarize_results(results)
 
     session_id = save_session(user_notes=user_notes.strip(), answers=answers)
     save_results(session_id=session_id, results=results)
