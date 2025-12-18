@@ -49,5 +49,19 @@ DIAGNOSTIC_RULES = [
             "Reapply thermal paste",
             "Test with a higher wattage PSU"
         ]
+    },
+    {
+        "symptom": "power_cycles",
+        "question": "Does the PC turn on briefly, then shut off and repeat (power cycling)?",
+        "probable_causes": [
+            "RAM not seated or incompatible",
+            "CPU power cable not connected",
+            "Short to case or standoff issue"
+        ],
+        "next_tests": [
+            "Reseat RAM and try one stick",
+            "Verify CPU 8-pin power cable",
+            "Test the motherboard outside the case"
+        ]
     }
 ]
