@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="UI: Edited Web UI to look nicer.">
+    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Feature: Added additional diagnostic rule for common hardware issue">
+      <change afterPath="$PROJECT_DIR$/app/rules/validator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/rules/knowledge_base.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/rules/knowledge_base.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/web/web_app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/web/web_app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -297,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766025745753</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Feature: Added additional diagnostic rule for common hardware issue">
+      <option name="closed" value="true" />
+      <created>1766026890959</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1766026890959</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -312,6 +321,7 @@
     <MESSAGE value="Changed layout of the Web UI" />
     <MESSAGE value="UI: Added helpful diagnostic tip to landing page" />
     <MESSAGE value="UI: Edited Web UI to look nicer." />
-    <option name="LAST_COMMIT_MESSAGE" value="UI: Edited Web UI to look nicer." />
+    <MESSAGE value="Feature: Added additional diagnostic rule for common hardware issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feature: Added additional diagnostic rule for common hardware issue" />
   </component>
 </project>

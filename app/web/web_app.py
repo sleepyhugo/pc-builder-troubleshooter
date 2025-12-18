@@ -6,6 +6,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.rules.engine import DiagnosticEngine
 from app.rules.knowledge_base import DIAGNOSTIC_RULES
+from app.rules.validator import validate_rules
 from app.data.db import init_db, save_session, save_results
 from app.data.queries import get_session, get_results_for_session
 from app.reports.pdf_report import generate_pdf_report
@@ -22,6 +23,7 @@ templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 @app.on_event("startup")
 def startup():
+    validate_rules(DIAGNOSTIC_RULES)
     init_db()
 
 
