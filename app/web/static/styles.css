@@ -39,6 +39,11 @@ body {
   background-size: 40px 40px;
 }
 
+/* Hides scrollbar */
+body::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
 /* Central Page Layout */
 .page {
   display: flex;
