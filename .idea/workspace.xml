@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Added a small backend helper to summarize diagnostic results, which makes it easier to extend the app later with reports, notifications, or history views.">
+    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Made it so the scrollbar doesn't show in the UI">
+      <change afterPath="$PROJECT_DIR$/screenshots/web-home.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/web-results.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/web/static/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/app/web/static/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/web/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/web/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/web/templates/results.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/web/templates/results.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/reports/pdf_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/reports/pdf_report.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +60,11 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\zaini\PycharmProjects\pc-builder-troubleshooter\screenshots" />
+    </key>
+  </component>
   <component name="RunManager" selected="Python.cli">
     <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pc-builder-troubleshooter" />
@@ -323,7 +329,23 @@
       <option name="project" value="LOCAL" />
       <updated>1766031521738</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Updated UI to modern dark theme">
+      <option name="closed" value="true" />
+      <created>1766288511987</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1766288511987</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Made it so the scrollbar doesn't show in the UI">
+      <option name="closed" value="true" />
+      <created>1766289165038</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1766289165038</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -341,6 +363,8 @@
     <MESSAGE value="Feature: Added additional diagnostic rule for common hardware issue" />
     <MESSAGE value="Feature: Added basic validation for diagnostic rules" />
     <MESSAGE value="Added a small backend helper to summarize diagnostic results, which makes it easier to extend the app later with reports, notifications, or history views." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a small backend helper to summarize diagnostic results, which makes it easier to extend the app later with reports, notifications, or history views." />
+    <MESSAGE value="Updated UI to modern dark theme" />
+    <MESSAGE value="Made it so the scrollbar doesn't show in the UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made it so the scrollbar doesn't show in the UI" />
   </component>
 </project>

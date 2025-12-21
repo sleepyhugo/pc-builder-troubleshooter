@@ -1,6 +1,6 @@
 # PC Builder Troubleshooter
 
-A full-stack diagnostic tool that helps troubleshoot common PC build issues such as **no power**, **no display**, and **random shutdowns**.  
+A full-stack diagnostic tool that helps troubleshoot common PC build issues such as **no power**, **no display**, and **random shutdowns**.
 Users answer symptom-based questions and receive **probable causes**, **recommended next tests**, and a **shareable PDF report**.
 
 Built to combine **hardware domain knowledge** with **clean software design**.
@@ -13,23 +13,34 @@ repeatable diagnostic process that produces clear next steps and documentation.
 
 ## Features
 
-- **Rule-based diagnostic engine**  
+- **Rule-based diagnostic engine**
   Matches user-reported symptoms to likely hardware causes and next troubleshooting steps.
 
-- **Persistent session logging (SQLite)**  
+- **Persistent session logging (SQLite)**
   Every diagnostic run is saved for later review or report generation.
 
-- **Automatic PDF report generation**  
+- **Automatic PDF report generation**
   Create a professional, shareable diagnostic report per session.
 
-- **CLI interface**  
+- **CLI interface**
   Run diagnostics directly from the terminal with optional PDF generation.
 
-- **Web UI (FastAPI)**  
-  Clean, dark-mode web interface with results view and PDF download.
+- **Immersive Web UI (FastAPI)**
+  A responsive, "Glassmorphism" interface featuring:
+  - **Void Black** aesthetic with digital grid backgrounds.
+  - **Neon accents** and glowing active states for inputs.
+  - **Glass-panel cards** with blur effects for a modern, dashboard feel.
 
-- **Modern UI polish**  
-  Always-on dark mode, centered layout, subtle hover animations.
+## Screenshots
+
+### Web Interface
+The new UI features a "Void Black" aesthetic with glass-morphism panels and neon accents.
+
+![Diagnostic Form](screenshots/web-home.png)
+*The main diagnostic form featuring glowing inputs and a digital grid background.*
+
+![Diagnostic Results](screenshots/web-results.png)
+*The results view showing structured diagnostic outputs in dark mode.*
 
 ## Tech Stack
 
@@ -40,8 +51,9 @@ repeatable diagnostic process that produces clear next steps and documentation.
 - ReportLab (PDF generation)
 
 **Frontend**
-- HTML (Jinja2 templates)
-- CSS (custom dark-mode styling)
+- HTML
+- CSS (Custom CSS Variables, Flexbox/Grid, Glassmorphism effects)
+- Fonts (Inter & JetBrains Mono)
 - No frontend frameworks (intentionally lightweight)
 
 **Other**
