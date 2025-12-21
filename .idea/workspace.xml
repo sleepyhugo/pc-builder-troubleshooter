@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Made it so the scrollbar doesn't show in the UI">
-      <change afterPath="$PROJECT_DIR$/screenshots/web-home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/screenshots/web-results.png" afterDir="false" />
+    <list default="true" id="9350ea55-6f9b-4f3a-9c79-b3e9fd832091" name="Changes" comment="Updated README with new information and added screenshots">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/reports/pdf_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/reports/pdf_report.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -345,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766289165038</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Updated README with new information and added screenshots">
+      <option name="closed" value="true" />
+      <created>1766291605788</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1766291605788</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -365,6 +370,7 @@
     <MESSAGE value="Added a small backend helper to summarize diagnostic results, which makes it easier to extend the app later with reports, notifications, or history views." />
     <MESSAGE value="Updated UI to modern dark theme" />
     <MESSAGE value="Made it so the scrollbar doesn't show in the UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made it so the scrollbar doesn't show in the UI" />
+    <MESSAGE value="Updated README with new information and added screenshots" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated README with new information and added screenshots" />
   </component>
 </project>
