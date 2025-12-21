@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Results - Session {{ session.id }}</title>
+  <title>Diagnostic Results</title>
   <link rel="stylesheet" href="/static/styles.css">
 </head>
 
@@ -11,69 +11,75 @@
   <div class="page">
     <div class="container">
 
-      <div class="topbar">
+      <div class="topbar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
         <div>
-          <h1>Results</h1>
-          <p class="muted">
-            Session <code>#{{ session.id }}</code> • Created (UTC): <code>{{ session.created_at }}</code>
+          <h1>Analysis Complete</h1>
+          <p class="muted" style="font-family: var(--font-mono);">
+            ID: {{ session.id }} • {{ session.created_at }}
           </p>
         </div>
 
         <div class="btn-row">
-          <a class="btn btn-primary" href="/session/{{ session.id }}/report.pdf">Download PDF</a>
-          <a class="btn" href="/">Run another</a>
+          <a class="btn" href="/">New Scan</a>
+          <a class="btn btn-primary" href="/session/{{ session.id }}/report.pdf">Download Report</a>
         </div>
       </div>
 
       <div class="grid">
         <div class="card">
-          <h3>Notes</h3>
-          <p class="muted">{{ session.user_notes if session.user_notes else "(none)" }}</p>
+          <h3>User Notes</h3>
+          <p class="muted">{{ session.user_notes if session.user_notes else "No notes provided." }}</p>
         </div>
 
         <div class="card">
-          <h3>Answers</h3>
-          <ul>
+          <h3>Input Telemetry</h3>
+          <ul style="list-style: none; padding: 0; margin: 0;">
             {% for k, v in session.answers.items() %}
-              <li><strong>{{ k.replace("_", " ") }}</strong>: {{ "YES" if v else "NO" }}</li>
+              <li style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--border);">
+                <span>{{ k.replace("_", " ").title() }}</span>
+                <strong style="color: {{ 'var(--accent)' if v else 'var(--text-muted)' }}">{{ "DETECTED" if v else "CLEAR" }}</strong>
+              </li>
             {% endfor %}
           </ul>
         </div>
 
         <div class="card span-2">
-          <h3>Diagnostic Results</h3>
+          <h3>Diagnostic Output</h3>
 
           {% if results|length == 0 %}
-            <p class="muted">No matching issues detected.</p>
+            <div style="padding: 20px; text-align: center; color: var(--success);">
+              <h3>No Critical Faults Matched</h3>
+              <p>The system could not identify a specific pattern based on current rules.</p>
+            </div>
           {% else %}
             {% for r in results %}
               <div class="result-card">
-                <h4 class="muted" style="margin: 0 0 10px;">
-                  Symptom: <strong style="color: var(--text);">{{ r.symptom.replace("_", " ").title() }}</strong>
+                <h4 style="margin: 0 0 10px; color: var(--accent);">
+                  ⚠ Potential Fault: {{ r.symptom.replace("_", " ").title() }}
                 </h4>
 
-                <strong>Probable Causes</strong>
-                <ul>
-                  {% for c in r.probable_causes %}
-                    <li>{{ c }}</li>
-                  {% endfor %}
-                </ul>
-
-                <strong>Next Tests</strong>
-                <ul>
-                  {% for t in r.next_tests %}
-                    <li>{{ t }}</li>
-                  {% endfor %}
-                </ul>
+                <div class="grid" style="gap: 10px;">
+                  <div>
+                    <strong>Probable Causes</strong>
+                    <ul class="muted">
+                      {% for c in r.probable_causes %}
+                        <li>{{ c }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                  <div>
+                    <strong>Recommended Validations</strong>
+                    <ul class="muted">
+                      {% for t in r.next_tests %}
+                        <li>{{ t }}</li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                </div>
               </div>
             {% endfor %}
           {% endif %}
         </div>
-      </div>
-
-      <div class="btn-row">
-        <a class="btn btn-primary" href="/session/{{ session.id }}/report.pdf">Download PDF</a>
-        <a class="btn" href="/">Run another</a>
       </div>
 
     </div>

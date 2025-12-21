@@ -9,53 +9,49 @@
 
 <body>
   <div class="page">
+    <div class="container">
        <main class="app">
 
         <div class="hero">
-          <div>
-            <h1 class="hero-title">PC Builder Troubleshooter</h1>
-            <p class="hero-subtitle">
-              Fast, structured diagnostics for common build issues. Answer a few symptoms and get probable causes,
-              recommended next tests, and a shareable PDF report.
-            </p>
+          <h1 class="hero-title">System Diagnostics</h1>
+          <p class="hero-subtitle">
+            AI-assisted logic for PC hardware troubleshooting.
+            Select symptoms below to generate a repair manifest.
+          </p>
 
-            <div class="kpi-row">
-              <span class="chip"><span class="dot"></span> Rule-based engine</span>
-              <span class="chip"><span class="dot"></span> Saved sessions</span>
-              <span class="chip"><span class="dot"></span> PDF export</span>
-            </div>
+          <div class="kpi-row" style="display: flex; gap: 10px; justify-content: center;">
+            <span class="chip"><span class="dot"></span> Logic Engine</span>
+            <span class="chip"><span class="dot"></span> Hardware Safe</span>
+            <span class="chip"><span class="dot"></span> PDF Export</span>
           </div>
         </div>
 
-        <p class="section-title">Notes</p>
-        <p class="section-help">Optional, but helps: specs (CPU/GPU/RAM), recent changes, and when it fails.</p>
-
         <form method="POST" action="/diagnose-async">
-          <div class="card">
-            <label for="user_notes">Build / symptom notes (optional)</label>
-            <textarea
-              id="user_notes"
-              name="user_notes"
-              placeholder="Example: i7 + RTX 4070, added new RAM, powers on but no display..."
-            ></textarea>
+          <div class="grid">
+            <div class="card span-2">
+              <label for="user_notes">Build Log / Observation Notes</label>
+              <textarea
+                id="user_notes"
+                name="user_notes"
+                placeholder="Ex: MSI B550, Ryzen 5600X. Debug LED is solid red on CPU..."
+              ></textarea>
+            </div>
           </div>
 
-          <p class="section-title">Symptoms</p>
-          <p class="section-help">Answer based on what you observe right now.</p>
+          <h3 class="section-title" style="margin: 30px 0 15px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">Observation Checklist</h3>
 
           <div class="grid">
             {% for r in rules %}
               <div class="card">
-                <div class="question"><strong>{{ r.question }}</strong></div>
-
+                <div class="question" style="margin-bottom: 15px;">{{ r.question }}</div>
                 <div class="choice-row">
                   <label class="pill">
                     <input type="radio" name="{{ r.symptom }}" value="y" required />
-                    Yes
+                    YES
                   </label>
                   <label class="pill">
                     <input type="radio" name="{{ r.symptom }}" value="n" />
-                    No
+                    NO
                   </label>
                 </div>
               </div>
@@ -63,16 +59,11 @@
           </div>
 
           <div class="footer">
-            <div class="muted">Saved to SQLite • PDF available on results page</div>
-            <button class="btn btn-primary" type="submit">Run Diagnosis</button>
-          </div>
-          <div class="muted" style="margin-top: 16px; font-size: 0.85rem;">
-            Tip: Answer based on what the system is doing right now (LEDs, fans, display signal).
+            <div class="muted">Session will be saved locally</div>
+            <button class="btn btn-primary" type="submit">Run Diagnostics</button>
           </div>
         </form>
 
       </main>
-    </div>
-  </div>
-</body>
+    </div> </div> </body>
 </html>
