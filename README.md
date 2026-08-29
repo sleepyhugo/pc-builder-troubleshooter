@@ -1,107 +1,102 @@
 # PC Builder Troubleshooter
 
-A full-stack diagnostic tool that helps troubleshoot common PC build issues such as **no power**, **no display**, and **random shutdowns**.
-Users answer symptom-based questions and receive **probable causes**, **recommended next tests**, and a **shareable PDF report**.
+A diagnostic tool for common PC build failures. You answer symptom questions, and it returns probable causes, recommended next tests, and a PDF report you can hand to someone else.
 
-Built to combine **hardware domain knowledge** with **clean software design**.
+Available as both a web app and a CLI, backed by a shared rule engine.
 
 ## Why This Project
 
-Building and troubleshooting PCs often relies on informal advice and guesswork.
-This project formalizes common troubleshooting knowledge into a structured,
-repeatable diagnostic process that produces clear next steps and documentation.
+I spent a year building gaming PCs at Digital Storm. Every unit had to POST before it went to testing, and anything that didn't came back to my bench — along with units that failed testing for overheating.
+
+Diagnosing those was mostly tribal knowledge: the same handful of checks, passed between techs, never written down. I wrote this to turn that into something structured and repeatable, and to learn Python properly while doing it.
+
+## How It Works
+
+The diagnostic knowledge lives in `app/knowledge_base.py` as a list of rules. Each rule pairs a symptom with the causes worth checking and the tests that distinguish between them:
+
+```python
+{
+    "symptom": "power_cycles",
+    "question": "Does the PC turn on briefly, then shut off and repeat?",
+    "probable_causes": [
+        "RAM not seated or incompatible",
+        "CPU power cable not connected",
+        "Short to case or standoff issue"
+    ],
+    "next_tests": [
+        "Reseat RAM and try one stick",
+        "Verify CPU 8-pin power cable",
+        "Test the motherboard outside the case"
+    ]
+}
+```
+
+Keeping the rules as data rather than branching logic means adding a symptom is a data change, not a code change. The engine, the CLI, and the web app all read from the same rule set, so the two interfaces can't drift apart.
+
+Current coverage: no power, powers on with no display, random shutdowns under load, and power cycling.
 
 ## Features
 
-- **Rule-based diagnostic engine**
-  Matches user-reported symptoms to likely hardware causes and next troubleshooting steps.
-
-- **Persistent session logging (SQLite)**
-  Every diagnostic run is saved for later review or report generation.
-
-- **Automatic PDF report generation**
-  Create a professional, shareable diagnostic report per session.
-
-- **CLI interface**
-  Run diagnostics directly from the terminal with optional PDF generation.
-
-- **Immersive Web UI (FastAPI)**
-  A responsive, "Glassmorphism" interface featuring:
-  - **Void Black** aesthetic with digital grid backgrounds.
-  - **Neon accents** and glowing active states for inputs.
-  - **Glass-panel cards** with blur effects for a modern, dashboard feel.
+- **Rule-based diagnostic engine** — maps reported symptoms to ranked causes and the tests that narrow them down.
+- **Session history (SQLite)** — every run is saved and can be reviewed or re-exported later.
+- **PDF reports (ReportLab)** — one report per session, shareable with whoever picks up the machine next.
+- **Two entry points** — a terminal CLI and a FastAPI web app over the same engine.
 
 ## Screenshots
 
-### Web Interface
-The new UI features a "Void Black" aesthetic with glass-morphism panels and neon accents.
+![Diagnostic form](screenshots/web-home.png)
+*Symptom selection — the questions come straight from the rule set.*
 
-![Diagnostic Form](screenshots/web-home.png)
-*The main diagnostic form featuring glowing inputs and a digital grid background.*
-
-![Diagnostic Results](screenshots/web-results.png)
-*The results view showing structured diagnostic outputs in dark mode.*
+![Diagnostic results](screenshots/web-results.png)
+*Results for a reported symptom: probable causes on the left, next tests to run on the right.*
 
 ## Tech Stack
 
-**Backend**
-- Python 3
-- FastAPI
-- SQLite
-- ReportLab (PDF generation)
-
-**Frontend**
-- HTML
-- CSS (Custom CSS Variables, Flexbox/Grid, Glassmorphism effects)
-- Fonts (Inter & JetBrains Mono)
-- No frontend frameworks (intentionally lightweight)
-
-**Other**
-- Rule-based decision logic
-- Modular project structure
-- CLI + Web entry points
+**Backend** — Python 3.11, FastAPI, SQLite, ReportLab
+**Frontend** — HTML and hand-written CSS, no frameworks
+**Testing** — pytest
 
 ## Getting Started
 
-### Clone the repository
 ```bash
 git clone https://github.com/sleepyhugo/pc-builder-troubleshooter.git
 cd pc-builder-troubleshooter
-```
 
-### Create a virtual environment
-```bash
 python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
-```
 
-### Install dependencies
-```bash
 pip install -r requirements.txt
 ```
 
-## Running the CLI
+### Run the CLI
+
 ```bash
 python -m app.cli
 ```
 
-From the menu you can:
-- Run a new diagnostic
-- View recent sessions
-- Generate PDF reports for past sessions
+Run a new diagnostic, review past sessions, or generate a PDF from any of them.
 
+### Run the web app
 
-## Running the Web App
 ```bash
 uvicorn app.web.web_app:app --reload
 ```
 
-Open in your browser:
-```
-http://127.0.0.1:8000
+Then open http://127.0.0.1:8000
+
+### Run the tests
+
+```bash
+pytest
 ```
 
-Features:
-- Answer symptom questions
-- View diagnostic results
-- Download PDF report per session
+## Roadmap
+
+- Move the rule set out of Python and into a JSON file loaded at startup
+- Rank causes by likelihood instead of returning a flat list
+- Expand coverage beyond the current four symptoms
+- CI running the test suite on every push
+
+## License
+
+MIT
