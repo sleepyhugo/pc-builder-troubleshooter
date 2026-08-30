@@ -41,30 +41,7 @@ def home(request: Request):
 
 
 @app.post("/diagnose")
-def diagnose(
-    request: Request,
-    user_notes: str = Form(default=""),
-):
-    # Convert form fields into answers dict
-    answers = {}
-    for rule in DIAGNOSTIC_RULES:
-        key = rule["symptom"]
-        raw = request._form.get(key) if hasattr(request, "_form") else None  # fallback
-        # parse below by reading from request.form()
-        answers[key] = False
-
-    # Properly read form (FastAPI/Starlette)
-    # NOTE: This is synchronous-safe here because it's a standard form post.
-    form = request.scope.get("fastapi_astack")  # not reliable; ignore
-
-    # Use Starlette form parsing:
-    # (FastAPI doesn't allow request.form() in sync def cleanly without async,
-    # so we do a small workaround: make a dedicated async handler.)
-    return RedirectResponse(url="/diagnose-async", status_code=307)
-
-
-@app.post("/diagnose-async")
-async def diagnose_async(
+async def diagnose(
     request: Request,
     user_notes: str = Form(default=""),
 ):
