@@ -42,14 +42,6 @@ Current coverage: no power, powers on with no display, random shutdowns under lo
 - **PDF reports (ReportLab)** — one report per session, shareable with whoever picks up the machine next.
 - **Two entry points** — a terminal CLI and a FastAPI web app over the same engine.
 
-## Screenshots
-
-![Diagnostic form](screenshots/web-home.png)
-*Symptom selection — the questions come straight from the rule set.*
-
-![Diagnostic results](screenshots/web-results.png)
-*Results for a reported symptom: probable causes on the left, next tests to run on the right.*
-
 ## Tech Stack
 
 **Backend** — Python 3.11, FastAPI, SQLite, ReportLab
