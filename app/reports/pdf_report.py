@@ -1,5 +1,7 @@
 from pathlib import Path
 from datetime import datetime
+from xml.sax.saxutils import escape
+
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import LETTER
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -12,6 +14,9 @@ DARK_BG = colors.HexColor("#0e1117")
 TEXT_COLOR = colors.HexColor("#1f2630")
 MUTED_COLOR = colors.HexColor("#64748b")
 
+def esc(value) -> str:
+    """Escape for ReportLab Paragraph: raw '<' crashes it or eats text."""
+    return escape("" if value is None else str(value))
 
 def generate_pdf_report(session: dict, results: list[dict], output_dir: Path) -> Path:
     # Setup Output Path
@@ -82,7 +87,7 @@ def generate_pdf_report(session: dict, results: list[dict], output_dir: Path) ->
     # Header Block (Dark Banner)
     header_data = [
         [Paragraph("DIAGNOSTIC MANIFEST", style_title)],
-        [Paragraph(f"SESSION ID: {session_id}",
+        [Paragraph(f"SESSION ID: {esc(session_id)}",
                    ParagraphStyle('Sub', parent=style_mono, textColor=colors.white, backColor=None))]
     ]
     header_table = Table(header_data, colWidths=[6.5 * inch])
@@ -97,7 +102,7 @@ def generate_pdf_report(session: dict, results: list[dict], output_dir: Path) ->
 
     # Meta Data
     date_str = session.get('created_at', datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
-    elements.append(Paragraph(f"<b>TIMESTAMP:</b> {date_str}", style_body))
+    elements.append(Paragraph(f"<b>TIMESTAMP:</b> {esc(date_str)}", style_body))
     elements.append(Spacer(1, 10))
 
     # User Notes
@@ -105,7 +110,7 @@ def generate_pdf_report(session: dict, results: list[dict], output_dir: Path) ->
     user_notes = session.get('user_notes', '').strip()
     if not user_notes:
         user_notes = "No user notes provided."
-    elements.append(Paragraph(user_notes, style_mono))
+    elements.append(Paragraph(esc(user_notes), style_mono))
     elements.append(Spacer(1, 15))
 
     # Input Telemetry (Symptom Checklist)
@@ -117,13 +122,10 @@ def generate_pdf_report(session: dict, results: list[dict], output_dir: Path) ->
 
         # Style the status text
         if val:
-            status_cell = Paragraph(f"<b>{status_text}</b>",
-                                    ParagraphStyle('Red', parent=style_body, textColor=colors.red, alignment=1))
+            status_cell = Paragraph(f"<b>{status_text}</b>", ParagraphStyle('Red', parent=style_body, textColor=colors.red, alignment=1))
         else:
-            status_cell = Paragraph(status_text,
-                                    ParagraphStyle('Grey', parent=style_body, textColor=MUTED_COLOR, alignment=1))
-
-        telemetry_data.append([key.replace('_', ' ').upper(), status_cell])
+            status_cell = Paragraph(status_text, ParagraphStyle('Grey', parent=style_body, textColor=MUTED_COLOR, alignment=1))
+            telemetry_data.append([esc(key).replace('_', ' ').upper(), status_cell])
 
     t = Table(telemetry_data, colWidths=[4.5 * inch, 1.5 * inch])
     t.setStyle(TableStyle([
@@ -146,16 +148,13 @@ def generate_pdf_report(session: dict, results: list[dict], output_dir: Path) ->
         elements.append(Paragraph("No specific hardware faults matched the rule engine.", style_body))
     else:
         for res in results:
-            symptom_name = res.get('symptom', 'Unknown Issue').replace('_', ' ').upper()
-
+            symptom_name = esc(res.get('symptom', 'Unknown Issue')).replace('_', ' ').upper()
             # Fault Header
-            elements.append(Paragraph(f"⚠ FAULT DETECTED: {symptom_name}",
-                                      ParagraphStyle('Warn', parent=styles['Heading3'], textColor=colors.red,
-                                                     spaceAfter=6)))
+            elements.append(Paragraph(f"⚠ FAULT DETECTED: {symptom_name}", ParagraphStyle('Warn', parent=styles['Heading3'], textColor=colors.red, spaceAfter=6)))
 
             # Causes
             elements.append(Paragraph("<b>PROBABLE CAUSES:</b>", style_body))
-            cause_list = [f"&bull; {c}" for c in res.get('probable_causes', [])]
+            cause_list = [f"&bull; {esc(c)}" for c in res.get('probable_causes', [])]
             for item in cause_list:
                 elements.append(Paragraph(item, style_body))
 
@@ -163,7 +162,7 @@ def generate_pdf_report(session: dict, results: list[dict], output_dir: Path) ->
 
             # Next Steps
             elements.append(Paragraph("<b>RECOMMENDED ACTION:</b>", style_body))
-            test_list = [f"&bull; {t}" for t in res.get('next_tests', [])]
+            test_list = [f"&bull; {esc(t)}" for t in res.get('next_tests', [])]
             for item in test_list:
                 elements.append(Paragraph(item, style_body))
 
