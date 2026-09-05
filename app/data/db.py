@@ -1,7 +1,7 @@
 import json
 import sqlite3
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Project root = two levels up from app/data/
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -40,7 +40,7 @@ def init_db():
 
 
 def save_session(user_notes: str, answers: dict) -> int:
-    created_at = datetime.utcnow().isoformat()
+    created_at = datetime.now(timezone.utc).isoformat()
 
     with get_connection() as conn:
         cur = conn.cursor()

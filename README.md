@@ -12,7 +12,7 @@ Diagnosing those was mostly tribal knowledge: the same handful of checks, passed
 
 ## How It Works
 
-The diagnostic knowledge lives in `app/knowledge_base.py` as a list of rules. Each rule pairs a symptom with the causes worth checking and the tests that distinguish between them:
+The diagnostic knowledge lives in `app/rules/knowledge_base.py` as a list of rules. Each rule pairs a symptom with the causes worth checking and the tests that distinguish between them:
 
 ```python
 {
@@ -37,16 +37,16 @@ Current coverage: no power, powers on with no display, random shutdowns under lo
 
 ## Features
 
-- **Rule-based diagnostic engine** — maps reported symptoms to ranked causes and the tests that narrow them down.
+- **Rule-based diagnostic engine** — maps reported symptoms to probable causes and the tests that narrow them down.
 - **Session history (SQLite)** — every run is saved and can be reviewed or re-exported later.
 - **PDF reports (ReportLab)** — one report per session, shareable with whoever picks up the machine next.
 - **Two entry points** — a terminal CLI and a FastAPI web app over the same engine.
 
 ## Tech Stack
 
-**Backend** — Python 3.11, FastAPI, SQLite, ReportLab
+**Backend** — Python 3.12, FastAPI, SQLite, ReportLab
 **Frontend** — HTML and hand-written CSS, no frameworks
-**Testing** — pytest
+**Testing** — pytest, pdfplumber
 
 ## Getting Started
 
@@ -79,6 +79,7 @@ Then open http://127.0.0.1:8000
 ### Run the tests
 
 ```bash
+pip install -r requirements-dev.txt
 pytest
 ```
 

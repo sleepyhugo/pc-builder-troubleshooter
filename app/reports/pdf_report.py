@@ -18,6 +18,20 @@ def esc(value) -> str:
     """Escape for ReportLab Paragraph: raw '<' crashes it or eats text."""
     return escape("" if value is None else str(value))
 
+def format_timestamp(raw) -> str:
+    """Render a stored ISO timestamp for a human reader.
+
+    Falls back to the raw value if it cannot be parsed, so a malformed
+    timestamp degrades the report instead of breaking it.
+    """
+    if not raw:
+        return "Unknown"
+    try:
+        parsed = datetime.fromisoformat(raw)
+        return parsed.strftime("%Y-%m-%d %H:%M UTC")
+    except (ValueError, TypeError):
+        return str(raw)
+
 def generate_pdf_report(session: dict, results: list[dict], output_dir: Path) -> Path:
     # Setup Output Path
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -101,7 +115,7 @@ def generate_pdf_report(session: dict, results: list[dict], output_dir: Path) ->
     elements.append(Spacer(1, 20))
 
     # Meta Data
-    date_str = session.get('created_at', datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    date_str = format_timestamp(session.get('created_at'))
     elements.append(Paragraph(f"<b>TIMESTAMP:</b> {esc(date_str)}", style_body))
     elements.append(Spacer(1, 10))
 
@@ -125,7 +139,8 @@ def generate_pdf_report(session: dict, results: list[dict], output_dir: Path) ->
             status_cell = Paragraph(f"<b>{status_text}</b>", ParagraphStyle('Red', parent=style_body, textColor=colors.red, alignment=1))
         else:
             status_cell = Paragraph(status_text, ParagraphStyle('Grey', parent=style_body, textColor=MUTED_COLOR, alignment=1))
-            telemetry_data.append([esc(key).replace('_', ' ').upper(), status_cell])
+
+        telemetry_data.append([esc(key).replace('_', ' ').upper(), status_cell])
 
     t = Table(telemetry_data, colWidths=[4.5 * inch, 1.5 * inch])
     t.setStyle(TableStyle([
