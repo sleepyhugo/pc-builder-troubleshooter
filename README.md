@@ -4,6 +4,14 @@ A diagnostic tool for common PC build failures. You answer symptom questions, an
 
 Available as both a web app and a CLI, backed by a shared rule engine.
 
+## Screenshots
+
+![Web interface](screenshots/home-page.png)
+
+![Diagnostic results](screenshots/analysis-page.png)
+
+![Generated PDF report](screenshots/diag-pdf.png)
+
 ## Why This Project
 
 I spent a year building gaming PCs at Digital Storm. Every unit had to POST before it went to testing, and anything that didn't came back to my bench — along with units that failed testing for overheating.
