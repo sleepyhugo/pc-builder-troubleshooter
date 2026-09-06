@@ -1,4 +1,6 @@
 from pathlib import Path
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.templating import Jinja2Templates
@@ -10,10 +12,14 @@ from app.rules.validator import validate_rules
 from app.data.db import init_db, save_session, save_results
 from app.data.queries import get_session, get_results_for_session
 from app.reports.pdf_report import generate_pdf_report
-from app.rules.summary import summarize_results
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    validate_rules(DIAGNOSTIC_RULES)
+    init_db()
+    yield
 
-app = FastAPI(title="PC Builder Troubleshooter")
+app = FastAPI(title="PC Builder Troubleshooter", lifespan=lifespan)
 
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
@@ -22,19 +28,12 @@ TEMPLATES_DIR = Path(__file__).resolve().parent / "templates"
 templates = Jinja2Templates(directory=str(TEMPLATES_DIR))
 
 
-
-@app.on_event("startup")
-def startup():
-    validate_rules(DIAGNOSTIC_RULES)
-    init_db()
-
-
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
     return templates.TemplateResponse(
+        request,
         "index.html",
         {
-            "request": request,
             "rules": DIAGNOSTIC_RULES,
         },
     )
@@ -55,7 +54,6 @@ async def diagnose(
 
     engine = DiagnosticEngine()
     results = engine.run(answers)
-    summary = summarize_results(results)
 
     session_id = save_session(user_notes=user_notes.strip(), answers=answers)
     save_results(session_id=session_id, results=results)
@@ -72,9 +70,9 @@ def view_session(request: Request, session_id: int):
     results = get_results_for_session(session_id)
 
     return templates.TemplateResponse(
+        request,
         "results.html",
         {
-            "request": request,
             "session": session,
             "results": results,
         },
