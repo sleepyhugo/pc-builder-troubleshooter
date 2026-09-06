@@ -1,6 +1,3 @@
-# knowledge_base.py
-# This is the hardware knowledge encoded as rules
-
 DIAGNOSTIC_RULES = [
     {
         "symptom": "no_power",
