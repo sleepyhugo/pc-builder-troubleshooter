@@ -52,9 +52,9 @@ Current coverage: no power, powers on with no display, random shutdowns under lo
 
 ## Tech Stack
 
-**Backend** — Python 3.12, FastAPI, SQLite, ReportLab
-**Frontend** — HTML and hand-written CSS, no frameworks
-**Testing** — pytest, pdfplumber
+- **Backend** — Python 3.12, FastAPI, SQLite, ReportLab
+- **Frontend** — HTML and CSS, no frameworks
+- **Testing** — pytest, pdfplumber
 
 ## Getting Started
 
